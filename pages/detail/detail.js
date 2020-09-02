@@ -1,6 +1,7 @@
 Page({
   data: {
-    art: {}
+    list: {},
+    node:{}
   },
   onReady: function () {
     wx.setNavigationBarTitle({
@@ -8,17 +9,23 @@ Page({
     })
   },
   onLoad: function (options) {
+
+
     var that = this
+
+    that.setData({
+      title: options.title,
+      content: options.content
+     })
     wx.request({
-      url: 'https://news-at.zhihu.com/api/4/news/' + options.id,
+      url: 'https://www.v2ex.com/api/replies/show.json?topic_id=' + options.id,
       headers: {
         'Content-Type': 'application/json'
       },
       success: function (res) {
          that.setData({
-           art: res.data
+          list: res.data
          })
-         console.log(res.data)
       }
     })
   }

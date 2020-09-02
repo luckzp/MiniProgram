@@ -1,6 +1,4 @@
 /**index.wxss**/
-
-
 .nav {
   height: 80rpx;
   width: 100%;
@@ -49,17 +47,21 @@
   border-bottom: 1px solid #d0d0d0;
   border-radius: 5px;
 }
+.news-item-left{
+  width: 20%;
+  height: 40px;
+  border-radius: 4px;
+}
 
 .news-item-right{
-  width: 80px;
-  height: 80px;
+  width: 80%;
 }
 
 .news-image{
-  width: 80px;
-  height: 80px;
+  width: 40px;
+  height: 40px;
 }
 
 .news-item-title{
-  font-size: 16px;
+  font-size: 15px;
 }

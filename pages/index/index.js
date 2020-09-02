@@ -22,7 +22,8 @@ Page({
       }
     ],
     currentTab: 0,
-    navScrollLeft: 0
+    navScrollLeft: 0,
+    list: []
   },
   //事件处理函数
   bindViewTap: function () {
@@ -51,16 +52,34 @@ Page({
 
     var that = this;
     wx.request({
-      url: 'https://news-at.zhihu.com/api/4/news/latest',
+      url: 'https://www.v2ex.com/api/topics/hot.json',
       headers: {
         'Content-Type': 'application/json'
       },
       success: function (res) {
          that.setData({
-           list: res.data.stories
+           list: res.data
          })
          console.log(res.data)
       }
     })
-  }
+  },
+
+  goDetail: function(ev) {
+
+    let info = ev.currentTarget.dataset;
+
+    let navigateUrl = '../detail/detail?';
+
+    for (let key in info) {
+        info[key] = encodeURIComponent(info[key]);
+        navigateUrl += key + '=' + info[key] + '&';
+    }
+
+    navigateUrl = navigateUrl.substring(0, navigateUrl.length - 1);
+
+    wx.navigateTo({
+        url: navigateUrl
+    });
+ }
 })

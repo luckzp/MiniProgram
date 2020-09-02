@@ -1,9 +1,26 @@
 <!--detail.wxml-->
 <view class="container">
-    <view class="art-header">
-        <image src="{{art.image}}" class="art-img"/>
-        <view class="art-title">{{art.title}}</view>
-        <view class="art-source">{{art.image_source}}</view>
+
+  <view class="topic-detail">
+    <view class="topic-owner">
+        <view class="topic-tit">{{title}}</view>
     </view>
-    <rich-text nodes="{{art.body}}"></rich-text>
+
+    <view class="topic-desc">
+        <text>{{content}}</text>
+    </view>
+  </view>
+	<view class="news-item-container">
+		<view wx:for="{{list}}" wx:key="id" wx:for-index="id">
+
+			<view class="news-item">
+				<view class="news-item-left">
+					<image src="{{item.member.avatar_normal}}" class="news-image" />
+				</view>
+				<view class="news-item-right">
+					<view class="news-item-title">{{item.content}}</view>
+				</view>
+			</view>
+		</view>
+	</view>
 </view>
