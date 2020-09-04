@@ -51,6 +51,7 @@ Page({
   onLoad: function () {
 
     var that = this;
+  
     wx.request({
       url: 'https://www.v2ex.com/api/topics/hot.json',
       headers: {
