@@ -1,7 +1,8 @@
 Page({
   data: {
     list: {},
-    node:{}
+    node:{},
+    html:"<div>Hello World!</div>"
   },
   onReady: function () {
     wx.setNavigationBarTitle({
@@ -23,10 +24,18 @@ Page({
         'Content-Type': 'application/json'
       },
       success: function (res) {
+
+       res.data.forEach(item => {
+        var newDate = new Date();
+        newDate.setTime(item["last_modified"] * 1000);
+        item["last_modified"] = newDate.toLocaleString() ;
+       });
+
          that.setData({
           list: res.data
-         })
+         });
       }
     })
   }
+
 })

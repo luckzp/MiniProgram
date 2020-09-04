@@ -1,12 +1,14 @@
 <!--detail.wxml-->
-<view class="container">
+<view>
+
 
   <view class="topic-detail">
-    <view class="topic-owner">
-        <view class="topic-tit">{{title}}</view>
-    </view>
+
+      <view class="topic-title">{{title}}</view>
+   
 
     <view class="topic-desc">
+		
         <text>{{content}}</text>
     </view>
   </view>
@@ -18,6 +20,7 @@
 					<image src="{{item.member.avatar_normal}}" class="news-image" />
 				</view>
 				<view class="news-item-right">
+					<view class="news-item-time">{{item.last_modified}}</view>
 					<view class="news-item-title">{{item.content}}</view>
 				</view>
 			</view>

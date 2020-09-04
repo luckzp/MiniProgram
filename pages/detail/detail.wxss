@@ -1,31 +1,24 @@
 .news-item-container {
   background-color: #f2f2f2;
   width: 100%;
-  padding-left: 8px;
-  padding-right: 8px;
-}
-.topic_detail{
-  padding-left: 8px;
-  padding-right: 8px;
-}
-.topic-owner {
-  display: flex;
-  align-items: center;
-  margin-bottom: 30rpx;
-}
-.topic-created {
-  margin-left: 30rpx;
-  font-size: 14px;
-  color: #999;
 }
 
-.topic-tit {
-  flex: 1;
+.topic-detail {
+  padding-left: 14px;
+  padding-right: 14px;
+}
+
+
+.topic-title {
   box-sizing: border-box;
-  padding-right: 10rpx;
-  line-height: 1.4;
-  font-size: 14px;
-  color: #333;
+  line-height: 24PX;
+  font-size: 24px;
+  color: black;
+  border-bottom: 3px solid #f0f0f0;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  margin-bottom: 10px;
+
 }
 
 .topic-info {
