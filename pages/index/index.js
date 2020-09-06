@@ -74,6 +74,7 @@ Page({
     wx.setStorageSync('history', history)
     let navigateUrl = '../detail/detail?';
     for (let key in info) {
+      if(key != 'avatar')
       // info[key] = encodeURIComponent(info[key]);
       navigateUrl += key + '=' + info[key] + '&';
   }
