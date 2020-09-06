@@ -69,18 +69,19 @@ Page({
   goDetail: function(ev) {
 
     let info = ev.currentTarget.dataset;
-
+    var history = wx.getStorageSync('history') || []
+    history.unshift(info);
+    wx.setStorageSync('history', history)
     let navigateUrl = '../detail/detail?';
-
     for (let key in info) {
-        info[key] = encodeURIComponent(info[key]);
-        navigateUrl += key + '=' + info[key] + '&';
-    }
+      // info[key] = encodeURIComponent(info[key]);
+      navigateUrl += key + '=' + info[key] + '&';
+  }
 
-    navigateUrl = navigateUrl.substring(0, navigateUrl.length - 1);
+  navigateUrl = navigateUrl.substring(0, navigateUrl.length - 1);
 
-    wx.navigateTo({
-        url: navigateUrl
-    });
+  wx.navigateTo({
+      url: navigateUrl
+  });
  }
 })

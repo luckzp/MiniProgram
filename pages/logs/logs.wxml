@@ -1,6 +1,23 @@
-<!--logs.wxml-->
-<view class="container log-list">
-  <block wx:for="{{logs}}" wx:for-item="log">
-    <text class="log-item">{{index + 1}}. {{log}}</text>
-  </block>
+<!--index.wxml-->
+<view class="container">
+
+	<view class="news-item-container">
+		<!-- <navigator url="../detail/detail?id={{item.id}}&title={{item.title}}&content={{item.content}}" wx:for="{{list}}" wx:key="id" wx:for-index="id"> -->
+		<view catchtap="goDetail" wx:for="{{list}}" wx:key="id" wx:for-index="id" 
+		data-id="{{item.id}}" 
+						 data-title="{{item.title}}" 
+						 data-content="{{item.content}}"
+             data-avatar="{{item.member.avatar_normal}}">
+			<view class="news-item">
+				<view class="news-item-left">
+					<image src="{{item.member.avatar_normal}}" class="news-image" />
+				</view>
+				<view class="news-item-right">
+					<view class="news-item-title">{{item.title}}</view>
+				</view>
+			</view>
+			</view>
+
+	</view>
+
 </view>

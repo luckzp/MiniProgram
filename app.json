@@ -2,6 +2,7 @@
   "pages":[
     "pages/index/index",
     "pages/detail/detail",
+    "pages/my/my",
     "pages/logs/logs"
   ],
   "window":{
@@ -19,7 +20,7 @@
         "selectedIconPath": "images/bookSelected.png"
       },
       {
-        "pagePath": "pages/logs/logs",
+        "pagePath": "pages/my/my",
         "text": "我的",
         "iconPath": "images/book.png",
         "selectedIconPath": "images/bookSelected.png"
