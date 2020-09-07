@@ -14,6 +14,12 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
+const unique = function(arr, val){
+  const res = new Map();
+  return arr.filter(item => !res.has(item[val]) && res.set(item[val], 1));
+}
+
 module.exports = {
-  formatTime: formatTime
+  formatTime: formatTime,
+  unique: unique
 }

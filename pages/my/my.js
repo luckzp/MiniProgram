@@ -2,12 +2,13 @@
 
 //获取app实例
 const app = getApp();
-
+const util = require('../../utils/util.js')
 Page({
     data: {
         userInfo: {},
         hasUserInfo: false,
-        canIUse: wx.canIUse('button.open-type.getUserInfo')
+        canIUse: wx.canIUse('button.open-type.getUserInfo'),
+        list: []
     },
 
     /**
@@ -41,6 +42,8 @@ Page({
     },
 
     onLoad: function () {
+
+    
         if (app.globalData.userInfo) {
             this.setData({
                 userInfo: app.globalData.userInfo,
@@ -75,5 +78,30 @@ Page({
             userInfo: e.detail.userInfo,
             hasUserInfo: true
         })
+    },
+
+    goDetail: function (ev) {
+
+        let info = ev.currentTarget.dataset;
+    
+        let navigateUrl = '../detail/detail?';
+        for (let key in info) {
+            info[key] = encodeURIComponent(info[key]);
+            navigateUrl += key + '=' + info[key] + '&';
+        }
+
+        navigateUrl = navigateUrl.substring(0, navigateUrl.length - 1);
+
+        wx.navigateTo({
+            url: navigateUrl
+        });
+    },
+
+    onShow: function(){
+        this.setData({
+            list: util.unique(wx.getStorageSync('history') || [], 'id')
+        });
     }
+
+
 })
