@@ -1,8 +1,10 @@
+const util = require('../../utils/util.js')
+
 Page({
   data: {
     list: {},
-    node:{},
-    html:"<div>Hello World!</div>"
+    node: {},
+    html: "<div>Hello World!</div>"
   },
   onReady: function () {
     wx.setNavigationBarTitle({
@@ -11,29 +13,34 @@ Page({
   },
   onLoad: function (options) {
 
-
+    let _bookInfo = {};
     var that = this
 
+    for (let key in options) {
+      _bookInfo[key] = decodeURIComponent(options[key]);
+  }
+
+
     that.setData({
-      title: options.title,
-      content: options.content
-     })
+      title: _bookInfo.title,
+      content: _bookInfo.content
+    })
     wx.request({
-      url: 'https://www.v2ex.com/api/replies/show.json?topic_id=' + options.id,
+      url: 'https://www.v2ex.com/api/replies/show.json?topic_id=' + _bookInfo.id,
       headers: {
         'Content-Type': 'application/json'
       },
       success: function (res) {
 
-       res.data.forEach(item => {
-        var newDate = new Date();
-        newDate.setTime(item["last_modified"] * 1000);
-        item["last_modified"] = newDate.toLocaleString() ;
-       });
+        res.data.forEach(item => {
 
-         that.setData({
+          item["last_modified"] = util.formatTime(new Date(item["last_modified"] * 1000));
+
+        });
+
+        that.setData({
           list: res.data
-         });
+        });
       }
     })
   }

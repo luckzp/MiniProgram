@@ -5,41 +5,9 @@ const app = getApp();
 
 Page({
     data: {
-        userInfo: {},   // 用户信息
-        hasLogin: wx.getStorageSync('loginFlag')
-            ? true 
-            : false     // 是否登录，根据后台返回的skey判断
-    },
-
-    // 检查本地 storage 中是否有skey登录态标识
-    checkLoginStatus: function() {
-        
-        let that = this;
-
-        let loginFlag = wx.getStorageSync('loginFlag');
-
-        if (loginFlag) {
-            // 检查 session_key 是否过期
-            wx.checkSession({
-                // session_key 有效(未过期)
-                success: function() {
-                    // 获取用户头像/昵称等信息
-                    that.getUserInfo();
-                },
-
-                // session_key 已过期
-                fail: function() {
-                    that.setData({
-                        hasLogin: false
-                    });
-                }
-            });
-
-        } else {
-            that.setData({
-                hasLogin: false
-            });
-        }
+        userInfo: {},
+    hasUserInfo: false,
+    canIUse: wx.canIUse('button.open-type.getUserInfo')
     },
 
     /**
@@ -72,23 +40,40 @@ Page({
         }
     },
 
-    onLoad: function() {
+    onLoad: function () {
         if (app.globalData.userInfo) {
+          this.setData({
+            userInfo: app.globalData.userInfo,
+            hasUserInfo: true
+          })
+        } else if (this.data.canIUse){
+          // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+          // 所以此处加入 callback 以防止这种情况
+          app.userInfoReadyCallback = res => {
             this.setData({
-              userInfo: app.globalData.userInfo,
+              userInfo: res.userInfo,
               hasUserInfo: true
             })
-          }else{
-            this.setData({
-                hasLogin: false
-            });
           }
-    },
-
-    onShow: function() {
-        let that = this;
-        that.setData({
-            userInfo: app.globalData.userInfo
-        });
-    }
+        } else {
+          // 在没有 open-type=getUserInfo 版本的兼容处理
+          wx.getUserInfo({
+            success: res => {
+              app.globalData.userInfo = res.userInfo
+              this.setData({
+                userInfo: res.userInfo,
+                hasUserInfo: true
+              })
+            }
+          })
+        }
+      },
+      getUserInfo: function(e) {
+        console.log(e)
+        app.globalData.userInfo = e.detail.userInfo
+        this.setData({
+          userInfo: e.detail.userInfo,
+          hasUserInfo: true
+        })
+      }
 })

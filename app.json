@@ -15,19 +15,19 @@
     "list":[
       {
         "pagePath": "pages/index/index",
-        "text": "首页",
-        "iconPath": "images/book.png",
-        "selectedIconPath": "images/bookSelected.png"
+        "text": "热榜",
+        "iconPath": "images/hotest.png",
+        "selectedIconPath": "images/hotest_on.png"
       },
       {
         "pagePath": "pages/my/my",
         "text": "我的",
-        "iconPath": "images/book.png",
-        "selectedIconPath": "images/bookSelected.png"
+        "iconPath": "images/my.png",
+        "selectedIconPath": "images/mySelected.png"
       }
     ],
     "color": "#bfbfbf",
-    "selectedColor": "#1AAD19"
+    "selectedColor": "#1296db"
   },
 
   
