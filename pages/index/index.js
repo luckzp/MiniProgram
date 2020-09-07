@@ -6,19 +6,13 @@ Page({
   data: {
   
     navData: [{
-        text: '全站'
+        text: '最热'
       },
       {
-        text: '科学'
+        text: '技术'
       },
       {
-        text: '数码'
-      },
-      {
-        text: '体育'
-      },
-      {
-        text: '时尚'
+        text: '交易'
       }
     ],
     currentTab: 0,

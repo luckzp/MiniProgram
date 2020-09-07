@@ -1,5 +1,4 @@
 const util = require('../../utils/util.js')
-
 Page({
   data: {
     list: {},
@@ -12,7 +11,7 @@ Page({
     })
   },
   onLoad: function (options) {
-
+    
     let _bookInfo = {};
     var that = this
 
