@@ -37,7 +37,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "2.12.2",
 	"appid": "wx930ec91641e23988",
-	"projectname": "hellohello",
+	"projectname": "MiniProgram",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},

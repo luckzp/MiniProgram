@@ -2,18 +2,18 @@
 <view>
 
 
-  <view class="topic-detail">
+	<view class="topic-detail">
 
-      <view class="topic-title">{{title}}</view>
-   
+		<view class="topic-title">{{title}}</view>
 
-    <view class="topic-desc">
-		
-        <text>{{content}}</text>
-    </view>
-  </view>
+
+		<view class="topic-desc">
+
+			<text>{{content}}</text>
+		</view>
+	</view>
 	<view class="news-item-container">
-		<view wx:for="{{list}}" wx:key="id" wx:for-index="id">
+		<!-- <view wx:for="{{list}}" wx:key="id" wx:for-index="id">
 
 			<view class="news-item">
 				<view class="news-item-left">
@@ -24,6 +24,24 @@
 					<view class="news-item-title">{{item.content}}</view>
 				</view>
 			</view>
-		</view>
+		</view> -->
+		<recycle-view batch="{{batchSetRecycleData}}" id="recycleId">
+			
+			<recycle-item wx:for="{{recycleList}}" wx:key="id" class="news-item-width">
+				<view class="news-item">
+					<view class="news-item-left">
+						<image src="{{item.member.avatar_normal}}" class="news-image" />
+					</view>
+					<view class="news-item-right">
+						<view class="news-item-time">{{item.last_modified}}</view>
+						<view class="news-item-title">{{item.content}}</view>
+					</view>
+				</view>
+			</recycle-item>
+
+		</recycle-view>
+
 	</view>
+
+
 </view>

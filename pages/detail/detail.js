@@ -1,4 +1,6 @@
 const util = require('../../utils/util.js')
+const createRecycleContext = require('miniprogram-recycle-view')
+const app = getApp()
 Page({
   data: {
     list: {},
@@ -9,10 +11,28 @@ Page({
     wx.setNavigationBarTitle({
       title: '详情页面'
     })
+  
   },
+  itemSizeFunc: function (item, idx) {
+    return {
+        width: 162,
+        height: 182
+    }
+},
   onLoad: function (options) {
     
     let _bookInfo = {};
+    var ctx = createRecycleContext({
+      id: 'recycleId',
+      dataKey: 'recycleList',
+      page: this,
+      itemSize: function(item, index) {
+        return {
+          width: app.globalData.windowHeight,
+            height: 180
+        }
+    }
+    })
     var that = this
 
     for (let key in options) {
@@ -36,12 +56,14 @@ Page({
           item["last_modified"] = util.formatTime(new Date(item["last_modified"] * 1000));
 
         });
-
+        ctx.append(res.data);
         that.setData({
           list: res.data
         });
       }
     })
+
+
   }
 
 })
